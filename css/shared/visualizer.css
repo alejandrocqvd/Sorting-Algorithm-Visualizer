@@ -1,0 +1,18 @@
+.visualizer-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    max-width: 900px;
+    width: 100%;
+    height: 400px; 
+    margin: auto;
+    border: 2px solid #50FA7B;
+}
+
+.bar {
+    width: 100%;
+    margin-left: .25rem;
+    margin-right: .25rem;
+    background-color: #50FA7B;
+    display: inline-block;
+}

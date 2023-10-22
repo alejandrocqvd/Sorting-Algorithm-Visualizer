@@ -2,6 +2,7 @@
 @import 'shared/nav.css';
 @import 'shared/options.css';
 @import 'shared/details.css';
+@import 'shared/visualizer.css';
 
 html {
     scroll-behavior: smooth;
