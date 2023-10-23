@@ -18,6 +18,9 @@ document.querySelectorAll('.primary-button').forEach(button => {
 document.addEventListener('DOMContentLoaded', (event) => {
     const arraySlider = document.getElementById('array-slider');
     const visualizerContainer = document.getElementById('visualizer-container');
+    const bubbleButton = document.getElementById('bubble-sort');
+
+    bubbleButton.classList.add('primary-active');
 
     arraySlider.addEventListener('input', (event) => {
         const arraySize = arraySlider.value;
