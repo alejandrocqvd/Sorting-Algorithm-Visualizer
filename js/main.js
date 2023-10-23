@@ -1,4 +1,4 @@
-import { bubbleSort, selectionSort } from './sortingAlgorithms.js';
+import { bubbleSort, selectionSort, insertionSort } from './sortingAlgorithms.js';
 import { createArray, updateVisualArray } from './visualizer.js';
 
 let arr = [];

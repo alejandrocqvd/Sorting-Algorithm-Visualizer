@@ -68,4 +68,47 @@ function selectionSort(arr) {
     return steps;
 }
 
-export { bubbleSort, selectionSort };
+function insertionSort(arr) {
+    let steps = [];
+    let n = arr.length;
+    let i, j, key;
+
+    for (i = 1; i < n; i++) {
+        key = arr[i];
+        j = i - 1;
+
+        steps.push({
+            arrayState: [...arr],
+            key: i,
+            compare: j,
+            shifted: false,
+            inserted: false
+        });
+
+        while (j >= 0 && arr[j] > key) {
+            steps.push({
+                arrayState: [...arr],
+                key: j + 1,
+                compare: j,
+                shifted: false,
+                inserted: false
+            });
+
+            arr[j + 1] = arr[j];
+            
+            steps.push({
+                arrayState: [...arr],
+                key: j + 1,
+                compare: j,
+                shifted: true,
+                inserted: false
+            });
+            
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+    return steps;
+}
+
+export { bubbleSort, selectionSort, insertionSort };

@@ -29,6 +29,9 @@ function updateVisualArray(sort, steps, speed) {
         case 'selection-sort':
             updateSelectionSort(steps, speed);
             break;
+        case 'insertion-sort':
+            updateInsertionSort(steps, speed);
+            break;
     }
 }
 
@@ -80,7 +83,37 @@ function updateSelectionSort(steps, speed) {
             }
         }, index * speed);
     });
-    
+
+    setTimeout(() => {
+        bars.forEach(bar => bar.classList.remove('i-highlight'));
+        bars.forEach(bar => bar.classList.remove('j-highlight'));
+    }, (steps.length + 1) * speed);
+}
+
+function updateInsertionSort(steps, speed) {
+    const bars = document.querySelectorAll('.bar');
+
+    steps.forEach((step, index) => {
+        setTimeout(() => {
+            bars.forEach(bar => bar.classList.remove('i-highlight'));
+            bars.forEach(bar => bar.classList.remove('j-highlight'));
+
+            bars[step.key].classList.add('i-highlight');
+            
+            if (step.compare !== null) { 
+                bars[step.compare].classList.add('j-highlight');
+            }
+            if (step.shifted) {
+                [bars[step.compare].style.height, bars[step.key].style.height] = 
+                [bars[step.key].style.height, bars[step.compare].style.height];
+            }
+            if (step.inserted) {
+                [bars[step.compare].style.height, bars[step.key].style.height] = 
+                [bars[step.key].style.height, bars[step.compare].style.height];
+            }
+        }, index * speed);
+    });
+
     setTimeout(() => {
         bars.forEach(bar => bar.classList.remove('i-highlight'));
         bars.forEach(bar => bar.classList.remove('j-highlight'));
