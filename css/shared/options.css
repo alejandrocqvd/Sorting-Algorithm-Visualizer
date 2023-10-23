@@ -103,6 +103,10 @@
     background-color: rgb(226, 90, 167);
 }
 
+.primary-active {
+    background-color: rgb(226, 90, 167);
+}
+
 .generate-options {
     display: flex;
     flex-direction: row;

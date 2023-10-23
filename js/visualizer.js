@@ -21,7 +21,18 @@ function createVisualArray(arr) {
     })
 }
 
-function updateVisualArray(steps, speed) {
+function updateVisualArray(sort, steps, speed) {
+    switch (sort) {
+        case 'bubble-sort':
+            updateBubbleSort(steps, speed);
+            break;
+        case 'selection-sort':
+            updateSelectionSort(steps, speed);
+            break;
+    }
+}
+
+function updateBubbleSort(steps, speed) {
     const bars = document.querySelectorAll('.bar');
     
     steps.forEach((step, index) => {
@@ -41,6 +52,31 @@ function updateVisualArray(steps, speed) {
 
                 bars[step.j].classList.add('j-highlight');
                 bars[step.j + 1].classList.add('i-highlight');
+            }
+        }, index * speed);
+    });
+}
+
+function updateSelectionSort(steps, speed) {
+    const bars = document.querySelectorAll('.bar');
+    
+    steps.forEach((step, index) => {
+        setTimeout(() => {
+            bars.forEach(bar => bar.classList.remove('i-highlight'));
+            bars.forEach(bar => bar.classList.remove('j-highlight'));
+
+            bars[step.j].classList.add('i-highlight');
+            bars[step.min].classList.add('j-highlight');
+            
+            if (step.swapped) {
+                [bars[step.j].style.height, bars[step.min].style.height] =
+                [bars[step.min].style.height, bars[step.j].style.height];
+
+                bars.forEach(bar => bar.classList.remove('i-highlight'));
+                bars.forEach(bar => bar.classList.remove('j-highlight'));
+
+                bars[step.j].classList.add('j-highlight');
+                bars[step.min].classList.add('i-highlight');
             }
         }, index * speed);
     });

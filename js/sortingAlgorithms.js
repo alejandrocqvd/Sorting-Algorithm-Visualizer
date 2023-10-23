@@ -35,4 +35,37 @@ function bubbleSort(arr) {
     return steps;
 }
 
-export { bubbleSort };
+function selectionSort(arr) {
+    let steps = [];
+    let n = arr.length;
+    let i, j, temp, min;
+
+    for (i = 0; i < n - 1; i++) {
+        min = i;
+        for (j = i + 1; j < n; j++) {
+            if (arr[j] < arr[min]) {
+                min = j;
+            }
+        }
+        if (min !== i) {
+            steps.push({
+                arrayState: [...arr],
+                j: i,
+                min: min,
+                swapped: false
+            });
+            temp = arr[min];
+            arr[min] = arr[i];
+            arr[i] = temp;
+            steps.push({
+                arrayState: [...arr],
+                j: i,
+                min: min,
+                swapped: true
+            });
+        }
+    }
+    return steps;
+}
+
+export { bubbleSort, selectionSort };

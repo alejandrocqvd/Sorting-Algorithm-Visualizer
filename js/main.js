@@ -1,8 +1,19 @@
-import { bubbleSort } from './sortingAlgorithms.js';
+import { bubbleSort, selectionSort } from './sortingAlgorithms.js';
 import { createArray, updateVisualArray } from './visualizer.js';
 
 let arr = [];
 let totalTime = 30000;
+let chosenAlgorithm = 'bubble-sort';
+
+document.querySelectorAll('.primary-button').forEach(button => {
+    button.addEventListener('click', function() {
+        document.querySelectorAll('.primary-button').forEach(btn => {
+            btn.classList.remove('primary-active');
+        });
+        button.classList.add('primary-active');
+        chosenAlgorithm = button.id;
+    });
+});
 
 document.addEventListener('DOMContentLoaded', (event) => {
     const arraySlider = document.getElementById('array-slider');
@@ -31,9 +42,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 document.getElementById('sort-button').addEventListener('click', function() {
-    const sortingSteps = bubbleSort(arr);
+    let sortingSteps, speed;
 
-    const speed = totalTime / sortingSteps.length;
+    switch (chosenAlgorithm) {
+        case 'bubble-sort':
+            sortingSteps = bubbleSort(arr);
+            break;
+        case 'selection-sort':
+            sortingSteps = selectionSort(arr);
+            break;
+        case 'insertion-sort':
+            sortingSteps = insertionSort(arr);
+            break;
+        case 'merge-sort':
+            sortingSteps = mergeSort(arr);
+            break;
+        case 'heap-sort':
+            sortingSteps = heapSort(arr);
+            break;
+        case 'quick-sort':
+            sortingSteps = quickSort(arr);
+            break;
+        case 'bogo-sort':
+            sortingSteps = bogoSort(arr);
+            break;
+    }
 
-    updateVisualArray(sortingSteps, speed);
+    speed = totalTime / sortingSteps.length;
+    updateVisualArray(chosenAlgorithm, sortingSteps, speed);
 });
