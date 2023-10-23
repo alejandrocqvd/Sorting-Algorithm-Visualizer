@@ -6,11 +6,15 @@ function bubbleSort(arr) {
 
     for (i = 0; i < n - 1; i++) {
         swapped = false;
+        steps.push({
+            arrayState: [...arr],
+            j: 0,
+            swapped: false
+        });
         for (j = 0; j < n - i - 1; j++) {
             steps.push({
                 arrayState: [...arr],
                 j: j,
-                jPlus: j + 1,
                 swapped: (arr[j] > arr[j + 1])
             });
             if (arr[j] > arr[j + 1]) {
@@ -19,6 +23,11 @@ function bubbleSort(arr) {
                 arr[j + 1] = temp;
                 swapped = true;
             }
+            steps.push({
+                arrayState: [...arr],
+                j: j + 1,
+                swapped: false
+            });
         }
         if (swapped == false) break;
     }
