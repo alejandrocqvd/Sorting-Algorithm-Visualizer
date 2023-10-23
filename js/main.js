@@ -2,7 +2,7 @@ import { bubbleSort, selectionSort } from './sortingAlgorithms.js';
 import { createArray, updateVisualArray } from './visualizer.js';
 
 let arr = [];
-let totalTime = 30000;
+let totalTime = 25000;
 let chosenAlgorithm = 'bubble-sort';
 
 document.querySelectorAll('.primary-button').forEach(button => {
