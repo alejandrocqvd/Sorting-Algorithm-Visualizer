@@ -80,6 +80,11 @@ function updateSelectionSort(steps, speed) {
             }
         }, index * speed);
     });
+    
+    setTimeout(() => {
+        bars.forEach(bar => bar.classList.remove('i-highlight'));
+        bars.forEach(bar => bar.classList.remove('j-highlight'));
+    }, (steps.length + 1) * speed);
 }
 
 export { createArray, createVisualArray, updateVisualArray };
