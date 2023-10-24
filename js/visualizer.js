@@ -32,6 +32,8 @@ function updateVisualArray(sort, steps, speed) {
         case 'insertion-sort':
             updateInsertionSort(steps, speed);
             break;
+        case 'merge-sort':
+            updateMergeSort(steps, speed);
     }
 }
 
@@ -118,6 +120,10 @@ function updateInsertionSort(steps, speed) {
         bars.forEach(bar => bar.classList.remove('i-highlight'));
         bars.forEach(bar => bar.classList.remove('j-highlight'));
     }, (steps.length + 1) * speed);
+}
+
+function updateMergeSort(steps, speed) {
+
 }
 
 export { createArray, createVisualArray, updateVisualArray };

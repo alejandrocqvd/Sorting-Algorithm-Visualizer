@@ -24,3 +24,19 @@
 .j-highlight {
     background-color: #31c4c9;
 }
+
+.left {
+    background-color: #c4c431; /* or any color of your choice */
+}
+
+.right {
+    background-color: #31c4c9;
+}
+
+.selected {
+    background-color: #e84131; /* or any color of your choice */
+}
+
+.merged {
+    background-color: #50FA7B;
+}
