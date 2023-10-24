@@ -104,12 +104,12 @@ function updateInsertionSort(steps, speed) {
                 bars[step.compare].classList.add('j-highlight');
             }
             if (step.shifted) {
+                bars.forEach(bar => bar.classList.remove('i-highlight'));
+                bars.forEach(bar => bar.classList.remove('j-highlight'));
                 [bars[step.compare].style.height, bars[step.key].style.height] = 
                 [bars[step.key].style.height, bars[step.compare].style.height];
-            }
-            if (step.inserted) {
-                [bars[step.compare].style.height, bars[step.key].style.height] = 
-                [bars[step.key].style.height, bars[step.compare].style.height];
+                bars[step.key].classList.add('j-highlight');
+                bars[step.compare].classList.add('i-highlight');
             }
         }, index * speed);
     });

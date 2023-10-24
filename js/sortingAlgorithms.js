@@ -84,16 +84,19 @@ function insertionSort(arr) {
             shifted: false,
             inserted: false
         });
-
+        let a = 0;
         while (j >= 0 && arr[j] > key) {
-            steps.push({
-                arrayState: [...arr],
-                key: j + 1,
-                compare: j,
-                shifted: false,
-                inserted: false
-            });
-
+            if (a != 0) {
+                steps.push({
+                    arrayState: [...arr],
+                    key: j + 1,
+                    compare: j,
+                    shifted: false,
+                    inserted: false
+                });
+            };
+            a++;
+            
             arr[j + 1] = arr[j];
             
             steps.push({
@@ -103,7 +106,6 @@ function insertionSort(arr) {
                 shifted: true,
                 inserted: false
             });
-            
             j--;
         }
         arr[j + 1] = key;
