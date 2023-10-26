@@ -115,52 +115,74 @@ function insertionSort(arr) {
     return steps;
 }
 
-function merge(arr, l, m, r) {
+function merge(arr, indexArr, l, m, r) {
     let n1 = m - l + 1;
     let n2 = r - m;
-    let L = new Array(n1);
-    let R = new Array(n2);
 
-    for (let i = 0; i < n1; i++) 
+    let L = new Array(n1), LIndices = new Array(n1);
+    let R = new Array(n2), RIndices = new Array(n2);
+
+    for (let i = 0; i < n1; i++) {
         L[i] = arr[l + i];
-    for (let j = 0; j < n2; j++) 
+        LIndices[i] = indexArr[l + i];
+    }
+    for (let j = 0; j < n2; j++) {
         R[j] = arr[m + 1 + j];
+        RIndices[j] = indexArr[m + 1 + j];
+    }
 
     let i = 0, j = 0, k = l;
-    
+
     while (i < n1 && j < n2) {
+        mergeSortSteps.push({
+            arrayState: [...indexArr],
+        })
         if (L[i] <= R[j]) {
-            arr[k] = L[i++];
+            arr[k] = L[i];
+            indexArr[k] = LIndices[i];
+            i++;
         } else {
-            arr[k] = R[j++];
+            arr[k] = R[j];
+            indexArr[k] = RIndices[j];
+            j++;
         }
-        k++;
+        k++;;
     }
-    
+
     while (i < n1) {
-        arr[k++] = L[i++];
+        mergeSortSteps.push({
+            arrayState: [...indexArr],
+        });
+        arr[k] = L[i];
+        indexArr[k] = LIndices[i];
+        i++; k++;
     }
-    
+
     while (j < n2) {
-        arr[k++] = R[j++];
+        mergeSortSteps.push({
+            arrayState: [...indexArr],
+        })
+        arr[k] = R[j];
+        indexArr[k] = RIndices[j];
+        j++; k++;
     }
 }
 
-function mergeSort(arr, l, r) {
+function mergeSort(arr, l, r, indexArr) {
     if (l >= r) return;
 
     let m = l + Math.floor((r - l) / 2);
-    
-    mergeSort(arr, l, m);
-    mergeSort(arr, m+1, r);
-    merge(arr, l, m, r);
+
+    mergeSort(arr, l, m, indexArr);
+    mergeSort(arr, m+1, r, indexArr);
+    merge(arr, indexArr, l, m, r);
 }
 
 function runMergeSort(arr) {
-    mergeSort(arr, 0, arr.length - 1);
-    let steps = [...mergeSortSteps];
-    mergeSortSteps.length = 0;
-    return steps;
+    let indexArr = Array.from({length: arr.length}, (_, i) => i);
+    mergeSortSteps = [];
+    mergeSort(arr, 0, arr.length - 1, indexArr);
+    return mergeSortSteps;
 }
 
 export { bubbleSort, selectionSort, insertionSort, runMergeSort };

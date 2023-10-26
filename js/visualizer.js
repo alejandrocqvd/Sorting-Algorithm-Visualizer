@@ -123,7 +123,30 @@ function updateInsertionSort(steps, speed) {
 }
 
 function updateMergeSort(steps, speed) {
+    const bars = document.querySelectorAll('.bar');
+    
+    steps.forEach((step, index) => {
+        setTimeout(() => {
+            bars.forEach((bar, j) => {
+                bar.classList.remove('j-highlight');
+                bar.classList.remove('i-highlight');
 
+                const targetIndex = step.arrayState[j];
+                if(targetIndex < bars.length) {
+                    const targetBar = bars[targetIndex];
+
+                    const tempHeight = bar.style.height;
+                    bar.style.height = targetBar.style.height;
+                    targetBar.style.height = tempHeight;
+                }
+            });
+        }, index * speed);
+    });
+
+    setTimeout(() => {
+        bars.forEach(bar => bar.classList.remove('i-highlight'));
+        bars.forEach(bar => bar.classList.remove('j-highlight'));
+    }, (steps.length + 1) * speed);
 }
 
 export { createArray, createVisualArray, updateVisualArray };
