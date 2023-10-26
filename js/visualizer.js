@@ -124,22 +124,15 @@ function updateInsertionSort(steps, speed) {
 
 function updateMergeSort(steps, speed) {
     const bars = document.querySelectorAll('.bar');
+    const arr = steps[0].originalArr;
+    const n = arr.length;
     
     steps.forEach((step, index) => {
         setTimeout(() => {
-            bars.forEach((bar, j) => {
-                bar.classList.remove('j-highlight');
-                bar.classList.remove('i-highlight');
-
-                const targetIndex = step.arrayState[j];
-                if(targetIndex < bars.length) {
-                    const targetBar = bars[targetIndex];
-
-                    const tempHeight = bar.style.height;
-                    bar.style.height = targetBar.style.height;
-                    targetBar.style.height = tempHeight;
-                }
-            });
+            for (let i = 0; i < n; i++) {
+                let idx = step.arrayState[i];
+                bars[i].style.height = `${arr[idx]}%`;
+            }
         }, index * speed);
     });
 

@@ -136,6 +136,7 @@ function merge(arr, indexArr, l, m, r) {
     while (i < n1 && j < n2) {
         mergeSortSteps.push({
             arrayState: [...indexArr],
+            originalArr: [...arr]
         })
         if (L[i] <= R[j]) {
             arr[k] = L[i];
