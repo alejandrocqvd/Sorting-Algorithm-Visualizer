@@ -151,21 +151,21 @@ function merge(arr, indexArr, l, m, r) {
     }
 
     while (i < n1) {
-        mergeSortSteps.push({
-            arrayState: [...indexArr],
-        });
         arr[k] = L[i];
         indexArr[k] = LIndices[i];
         i++; k++;
+        mergeSortSteps.push({
+            arrayState: [...indexArr],
+        });
     }
 
     while (j < n2) {
-        mergeSortSteps.push({
-            arrayState: [...indexArr],
-        })
         arr[k] = R[j];
         indexArr[k] = RIndices[j];
         j++; k++;
+        mergeSortSteps.push({
+            arrayState: [...indexArr],
+        })
     }
 }
 
