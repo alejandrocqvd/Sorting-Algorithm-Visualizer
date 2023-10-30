@@ -129,9 +129,21 @@ function updateMergeSort(steps, speed) {
     
     steps.forEach((step, index) => {
         setTimeout(() => {
+
             for (let i = 0; i < n; i++) {
+                bars.forEach(bar => bar.classList.remove('i-highlight'));
+                bars.forEach(bar => bar.classList.remove('j-highlight'));
+                bars[step.idx1].classList.add('i-highlight');
+                bars[step.idx2].classList.add('j-highlight');
+
                 let idx = step.arrayState[i];
+
                 bars[i].style.height = `${arr[idx]}%`;
+
+                bars.forEach(bar => bar.classList.remove('i-highlight'));
+                bars.forEach(bar => bar.classList.remove('j-highlight'));
+                bars[step.idx1].classList.add('j-highlight');
+                bars[step.idx2].classList.add('i-highlight');
             }
         }, index * speed);
     });
