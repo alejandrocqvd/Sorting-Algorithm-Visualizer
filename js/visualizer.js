@@ -126,6 +126,7 @@ function updateMergeSort(steps, speed) {
     const bars = document.querySelectorAll('.bar');
     const arr = steps[0].originalArr;
     const n = arr.length;
+    console.log(steps);
     
     steps.forEach((step, index) => {
         setTimeout(() => {
@@ -134,16 +135,14 @@ function updateMergeSort(steps, speed) {
                 bars.forEach(bar => bar.classList.remove('i-highlight'));
                 bars.forEach(bar => bar.classList.remove('j-highlight'));
                 bars[step.idx1].classList.add('i-highlight');
-                bars[step.idx2].classList.add('j-highlight');
+
+                if (step.idx2 != null && step.idx2 != step.idx1) {
+                    bars[step.idx2].classList.add('j-highlight');
+                }
 
                 let idx = step.arrayState[i];
 
                 bars[i].style.height = `${arr[idx]}%`;
-
-                bars.forEach(bar => bar.classList.remove('i-highlight'));
-                bars.forEach(bar => bar.classList.remove('j-highlight'));
-                bars[step.idx1].classList.add('j-highlight');
-                bars[step.idx2].classList.add('i-highlight');
             }
         }, index * speed);
     });
