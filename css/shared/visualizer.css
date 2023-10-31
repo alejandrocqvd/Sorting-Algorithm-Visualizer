@@ -15,8 +15,8 @@
 
 .bar {
     width: 100%;
-    margin-left: .25rem;
-    margin-right: .25rem;
+    margin-left: .1rem;
+    margin-right: .1rem;
     background-color: #50FA7B;
     display: inline-block;
 }

@@ -53,10 +53,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const bar = document.createElement('div');
             bar.className = 'bar';
             bar.style.height = `${arr[j]}%`;
-            if (arraySize > 70) {
-                bar.style.marginLeft = '.1rem';
-                bar.style.marginRight = '.1rem';
-            }
             j += 1;
             visualizerContainer.appendChild(bar);
         }
