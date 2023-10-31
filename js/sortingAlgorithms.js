@@ -236,10 +236,18 @@ function heapSort(arr) {
 
     for (let i = Math.floor(n / 2) - 1; i >= 0; i--)
         heapify(arr, indexArr, n, i, steps);
+        steps.push({
+            arrayState: [...arr], 
+            indexArr: [...indexArr]
+        });
 
     for (let i = n - 1; i > 0; i--) {
         swap(arr, indexArr, 0, i, steps);
         heapify(arr, indexArr, i, 0, steps);
+        steps.push({
+            arrayState: [...arr], 
+            indexArr: [...indexArr]
+        });
     }
     return steps;
 }
