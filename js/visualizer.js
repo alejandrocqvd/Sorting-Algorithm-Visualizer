@@ -189,11 +189,9 @@ function updateHeapSort(steps, speed) {
 }
 
 function updateBogoSort(steps, speed) {
-    const visualizerContainer = document.getElementById('visualizer-container');
     const bars = document.querySelectorAll('.bar');
     const arr = steps[0].originalArr;
     const n = arr.length;
-    const totalSteps = steps.length;
 
     steps.forEach((step, index) => {
         for (let i = 0; i < n; i++) {
