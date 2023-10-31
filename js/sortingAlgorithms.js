@@ -132,61 +132,74 @@ function merge(arr, indexArr, l, m, r) {
     }
 
     let i = 0, j = 0, k = l;
-    let tmp, idx2;
+    let idx2;
 
     while (i < n1 && j < n2) {
+
         if (L[i] <= R[j]) {
             arr[k] = L[i];
-            tmp = indexArr[k];
             idx2 = indexArr.indexOf(LIndices[i]);
-            indexArr[k] = LIndices[i];
-            indexArr[idx2] = tmp;
             mergeSortSteps.push({
                 arrayState: [...indexArr],
                 idx1: k,
-                idx2: idx2
+                idx2: idx2  
+            });
+            indexArr[k] = LIndices[i];
+            mergeSortSteps.push({
+                arrayState: [...indexArr],
+                idx1: k,
+                idx2: idx2  
             });
             i++;
         } else {
             arr[k] = R[j];
-            tmp = indexArr[k];
             idx2 = indexArr.indexOf(RIndices[j]);
-            indexArr[k] = RIndices[j];
-            indexArr[idx2] = tmp;
             mergeSortSteps.push({
                 arrayState: [...indexArr],
                 idx1: k,
-                idx2: idx2
+                idx2: idx2  
+            });
+            indexArr[k] = RIndices[j];
+            mergeSortSteps.push({
+                arrayState: [...indexArr],
+                idx1: k,
+                idx2: idx2  
             });
             j++;
         }
         k++;
     }
 
+    mergeSortSteps.push({
+        arrayState: [...indexArr],
+        idx1: k,
+        idx2: idx2  
+    });
     while (i < n1) {
         arr[k] = L[i];
-        tmp = indexArr[k];
         idx2 = indexArr.indexOf(LIndices[i]);
         indexArr[k] = LIndices[i];
-        indexArr[idx2] = tmp;
         mergeSortSteps.push({
             arrayState: [...indexArr],
             idx1: k,
-            idx2: idx2
+            idx2: idx2  
         });
         i++; k++;
     }
 
+    mergeSortSteps.push({
+        arrayState: [...indexArr],
+        idx1: k,
+        idx2: idx2  
+    });
     while (j < n2) {
         arr[k] = R[j];
-        tmp = indexArr[k];
         idx2 = indexArr.indexOf(RIndices[j]);
         indexArr[k] = RIndices[j];
-        indexArr[idx2] = tmp;
         mergeSortSteps.push({
             arrayState: [...indexArr],
             idx1: k,
-            idx2: idx2
+            idx2: idx2  
         });
         j++; k++;
     }
@@ -212,9 +225,5 @@ function runMergeSort(arr) {
     mergeSort(arr, 0, arr.length - 1, indexArr);
     return mergeSortSteps;
 }
-
-let arrToSort = [2, 6, 5, 7, 23];
-let result = runMergeSort(arrToSort);
-console.log(result);
 
 export { bubbleSort, selectionSort, insertionSort, runMergeSort };
