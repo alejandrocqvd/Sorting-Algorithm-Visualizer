@@ -226,4 +226,62 @@ function runMergeSort(arr) {
     return mergeSortSteps;
 }
 
-export { bubbleSort, selectionSort, insertionSort, runMergeSort };
+function heapSort(arr) {
+    let steps = [];
+    let indexArr = Array.from({length: arr.length}, (_, i) => i);
+    steps.push({
+        originalArr: [...arr]
+    });
+    let n = arr.length;
+
+    for (let i = Math.floor(n / 2) - 1; i >= 0; i--)
+        heapify(arr, indexArr, n, i, steps);
+
+    for (let i = n - 1; i > 0; i--) {
+        swap(arr, indexArr, 0, i, steps);
+        heapify(arr, indexArr, i, 0, steps);
+    }
+
+    return steps;
+}
+
+function heapify(arr, indexArr, n, i, steps) {
+    let largest = i;
+    let l = 2 * i + 1;
+    let r = 2 * i + 2;
+
+    if (l < n && arr[l] > arr[largest])
+        largest = l;
+
+    if (r < n && arr[r] > arr[largest])
+        largest = r;
+
+    if (largest != i) {
+        swap(arr, indexArr, i, largest, steps);
+        heapify(arr, indexArr, n, largest, steps);
+    }
+}
+
+function swap(arr, indexArr, i, j, steps) {
+    steps.push({
+        arrayState: [...indexArr],
+        idx1: i,
+        idx2: j,
+    });
+
+    let temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+
+    temp = indexArr[i];
+    indexArr[i] = indexArr[j];
+    indexArr[j] = temp;
+
+    steps.push({
+        arrayState: [...indexArr],
+        idx1: i,
+        idx2: j,
+    });
+}
+
+export { bubbleSort, selectionSort, insertionSort, runMergeSort, heapSort };
