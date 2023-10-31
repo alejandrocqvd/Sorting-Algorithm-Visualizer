@@ -34,10 +34,13 @@ function updateVisualArray(sort, steps, speed) {
             break;
         case 'merge-sort':
             updateMergeSort(steps, speed);
+            break;
         case 'heap-sort':
             updateHeapSort(steps, speed);
+            break;
         case 'bogo-sort':
             updateBogoSort(steps, speed);
+            break;
     }
 }
 
