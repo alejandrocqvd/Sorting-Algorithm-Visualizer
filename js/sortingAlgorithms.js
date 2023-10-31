@@ -115,20 +115,20 @@ function insertionSort(arr) {
     return steps;
 }
 
-function merge(arr, indexArr, l, m, r) {
+function merge(arr, idxexArr, l, m, r) {
     let n1 = m - l + 1;
     let n2 = r - m;
 
-    let L = new Array(n1), LIndices = new Array(n1);
-    let R = new Array(n2), RIndices = new Array(n2);
+    let L = new Array(n1), Lidxices = new Array(n1);
+    let R = new Array(n2), Ridxices = new Array(n2);
 
     for (let i = 0; i < n1; i++) {
         L[i] = arr[l + i];
-        LIndices[i] = indexArr[l + i];
+        Lidxices[i] = idxexArr[l + i];
     }
     for (let j = 0; j < n2; j++) {
         R[j] = arr[m + 1 + j];
-        RIndices[j] = indexArr[m + 1 + j];
+        Ridxices[j] = idxexArr[m + 1 + j];
     }
 
     let i = 0, j = 0, k = l;
@@ -138,30 +138,30 @@ function merge(arr, indexArr, l, m, r) {
 
         if (L[i] <= R[j]) {
             arr[k] = L[i];
-            idx2 = indexArr.indexOf(LIndices[i]);
+            idx2 = idxexArr.idxexOf(Lidxices[i]);
             mergeSortSteps.push({
-                arrayState: [...indexArr],
+                arrayState: [...idxexArr],
                 idx1: k,
                 idx2: idx2  
             });
-            indexArr[k] = LIndices[i];
+            idxexArr[k] = Lidxices[i];
             mergeSortSteps.push({
-                arrayState: [...indexArr],
+                arrayState: [...idxexArr],
                 idx1: k,
                 idx2: idx2  
             });
             i++;
         } else {
             arr[k] = R[j];
-            idx2 = indexArr.indexOf(RIndices[j]);
+            idx2 = idxexArr.idxexOf(Ridxices[j]);
             mergeSortSteps.push({
-                arrayState: [...indexArr],
+                arrayState: [...idxexArr],
                 idx1: k,
                 idx2: idx2  
             });
-            indexArr[k] = RIndices[j];
+            idxexArr[k] = Ridxices[j];
             mergeSortSteps.push({
-                arrayState: [...indexArr],
+                arrayState: [...idxexArr],
                 idx1: k,
                 idx2: idx2  
             });
@@ -171,16 +171,16 @@ function merge(arr, indexArr, l, m, r) {
     }
 
     mergeSortSteps.push({
-        arrayState: [...indexArr],
+        arrayState: [...idxexArr],
         idx1: k,
         idx2: idx2  
     });
     while (i < n1) {
         arr[k] = L[i];
-        idx2 = indexArr.indexOf(LIndices[i]);
-        indexArr[k] = LIndices[i];
+        idx2 = idxexArr.idxexOf(Lidxices[i]);
+        idxexArr[k] = Lidxices[i];
         mergeSortSteps.push({
-            arrayState: [...indexArr],
+            arrayState: [...idxexArr],
             idx1: k,
             idx2: idx2  
         });
@@ -188,16 +188,16 @@ function merge(arr, indexArr, l, m, r) {
     }
 
     mergeSortSteps.push({
-        arrayState: [...indexArr],
+        arrayState: [...idxexArr],
         idx1: k,
         idx2: idx2  
     });
     while (j < n2) {
         arr[k] = R[j];
-        idx2 = indexArr.indexOf(RIndices[j]);
-        indexArr[k] = RIndices[j];
+        idx2 = idxexArr.idxexOf(Ridxices[j]);
+        idxexArr[k] = Ridxices[j];
         mergeSortSteps.push({
-            arrayState: [...indexArr],
+            arrayState: [...idxexArr],
             idx1: k,
             idx2: idx2  
         });
@@ -206,46 +206,46 @@ function merge(arr, indexArr, l, m, r) {
 }
 
 
-function mergeSort(arr, l, r, indexArr) {
+function mergeSort(arr, l, r, idxexArr) {
     if (l >= r) return;
 
     let m = l + Math.floor((r - l) / 2);
 
-    mergeSort(arr, l, m, indexArr);
-    mergeSort(arr, m+1, r, indexArr);
-    merge(arr, indexArr, l, m, r);
+    mergeSort(arr, l, m, idxexArr);
+    mergeSort(arr, m+1, r, idxexArr);
+    merge(arr, idxexArr, l, m, r);
 }
 
 function runMergeSort(arr) {
-    let indexArr = Array.from({length: arr.length}, (_, i) => i);
+    let idxexArr = Array.from({length: arr.length}, (_, i) => i);
     mergeSortSteps = [];
     mergeSortSteps.push({
         originalArr: [...arr]
     });
-    mergeSort(arr, 0, arr.length - 1, indexArr);
+    mergeSort(arr, 0, arr.length - 1, idxexArr);
     return mergeSortSteps;
 }
 
 function heapSort(arr) {
     let steps = [];
-    let indexArr = Array.from({length: arr.length}, (_, i) => i);
+    let idxexArr = Array.from({length: arr.length}, (_, i) => i);
     steps.push({
         originalArr: [...arr]
     });
     let n = arr.length;
 
     for (let i = Math.floor(n / 2) - 1; i >= 0; i--)
-        heapify(arr, indexArr, n, i, steps);
+        heapify(arr, idxexArr, n, i, steps);
 
     for (let i = n - 1; i > 0; i--) {
-        swap(arr, indexArr, 0, i, steps);
-        heapify(arr, indexArr, i, 0, steps);
+        swap(arr, idxexArr, 0, i, steps);
+        heapify(arr, idxexArr, i, 0, steps);
     }
 
     return steps;
 }
 
-function heapify(arr, indexArr, n, i, steps) {
+function heapify(arr, idxexArr, n, i, steps) {
     let largest = i;
     let l = 2 * i + 1;
     let r = 2 * i + 2;
@@ -257,14 +257,14 @@ function heapify(arr, indexArr, n, i, steps) {
         largest = r;
 
     if (largest != i) {
-        swap(arr, indexArr, i, largest, steps);
-        heapify(arr, indexArr, n, largest, steps);
+        swap(arr, idxexArr, i, largest, steps);
+        heapify(arr, idxexArr, n, largest, steps);
     }
 }
 
-function swap(arr, indexArr, i, j, steps) {
+function swap(arr, idxexArr, i, j, steps) {
     steps.push({
-        arrayState: [...indexArr],
+        arrayState: [...idxexArr],
         idx1: i,
         idx2: j,
     });
@@ -273,15 +273,57 @@ function swap(arr, indexArr, i, j, steps) {
     arr[i] = arr[j];
     arr[j] = temp;
 
-    temp = indexArr[i];
-    indexArr[i] = indexArr[j];
-    indexArr[j] = temp;
+    temp = idxexArr[i];
+    idxexArr[i] = idxexArr[j];
+    idxexArr[j] = temp;
 
     steps.push({
-        arrayState: [...indexArr],
+        arrayState: [...idxexArr],
         idx1: i,
         idx2: j,
     });
 }
 
-export { bubbleSort, selectionSort, insertionSort, runMergeSort, heapSort };
+function isSorted(arr, n) {
+    for(let i = 1; i < n; i++) 
+        if (arr[i] < arr[i-1])
+            return false;
+    return true;
+}
+
+function bogoSwap(arr, xp, yp) {
+    let temp = arr[xp];
+    arr[xp] = arr[yp];
+    arr[yp] = temp;
+}
+
+function shuffle(arr, n) {
+    let i, j = n;
+    for (i = 0; i < n; i++){
+        let idx = Math.floor(Math.random() * n);
+        bogoSwap(arr, j - i - 1, idx);
+    }
+    return arr; 
+}
+
+function bogoSort(arr) {
+    let steps = [];
+    let n = arr.length;
+    let maxIterations = 30;
+    let iterations = 0;
+
+    steps.push({
+        originalArr: [...arr]
+    });
+
+    while (!isSorted(arr, n) && iterations < maxIterations) {
+        shuffle(arr, n);
+        steps.push({
+            arrayState: [...arr]
+        });
+        iterations++;
+    }
+    return steps;
+}
+
+export { bubbleSort, selectionSort, insertionSort, runMergeSort, heapSort, bogoSort };

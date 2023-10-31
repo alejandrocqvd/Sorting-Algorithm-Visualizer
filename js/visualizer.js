@@ -36,6 +36,8 @@ function updateVisualArray(sort, steps, speed) {
             updateMergeSort(steps, speed);
         case 'heap-sort':
             updateHeapSort(steps, speed);
+        case 'bogo-sort':
+            updateBogoSort(steps, speed);
     }
 }
 
@@ -185,5 +187,23 @@ function updateHeapSort(steps, speed) {
         bars.forEach(bar => bar.classList.remove('j-highlight'));
     }, (steps.length + 1) * speed);
 }
+
+function updateBogoSort(steps, speed) {
+    const visualizerContainer = document.getElementById('visualizer-container');
+    const bars = document.querySelectorAll('.bar');
+    const arr = steps[0].originalArr;
+    const n = arr.length;
+    const totalSteps = steps.length;
+
+    steps.forEach((step, index) => {
+        for (let i = 0; i < n; i++) {
+            setTimeout(() => {
+                bars[i].style.height = `${step.arrayState[i]}%`;
+            }, index * (speed / 3));
+        }
+    });
+}
+
+
 
 export { createArray, createVisualArray, updateVisualArray };

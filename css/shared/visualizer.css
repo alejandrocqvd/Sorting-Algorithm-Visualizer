@@ -9,6 +9,10 @@
     border: 2px solid #50FA7B;
 }
 
+.visualizer-container p {
+    font-size: 3rem;
+}
+
 .bar {
     width: 100%;
     margin-left: .25rem;
