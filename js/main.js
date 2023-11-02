@@ -42,6 +42,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     arraySlider.addEventListener('input', (event) => {
+        const sortButton = document.getElementById('sort-button');
+        sortButton.disabled = false;
+
         const arraySize = arraySlider.value;
         
         visualizerContainer.innerHTML = '';
@@ -60,6 +63,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 document.getElementById('sort-button').addEventListener('click', function() {
+    const sortButton = document.getElementById('sort-button');
+    sortButton.disabled = true;
+
     let sortingSteps, speed;
 
     switch (chosenAlgorithm) {
@@ -88,4 +94,8 @@ document.getElementById('sort-button').addEventListener('click', function() {
 
     speed = totalTime / sortingSteps.length;
     updateVisualArray(chosenAlgorithm, sortingSteps, speed);
+
+    setTimeout(() => {
+        sortButton.disabled = false;
+    }, (sortingSteps.length + 1) * speed);
 });
