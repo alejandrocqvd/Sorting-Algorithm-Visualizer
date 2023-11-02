@@ -3,6 +3,7 @@
 @import 'shared/options.css';
 @import 'shared/details.css';
 @import 'shared/visualizer.css';
+@import 'shared/details.css';
 
 html {
     scroll-behavior: smooth;
