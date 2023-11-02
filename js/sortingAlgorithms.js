@@ -317,7 +317,7 @@ function shuffle(arr, n) {
 function bogoSort(arr) {
     let steps = [];
     let n = arr.length;
-    let maxIterations = 30;
+    let maxIterations = 50;
     let iterations = 0;
 
     steps.push({

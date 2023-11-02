@@ -133,10 +133,6 @@ h3 {
     margin-right: 2rem;
     margin-bottom: 1rem;
     margin-top: 0;
-
-    /* overflow: hidden;
-    text-overflow: ellipsis; 
-    width: 100%; */
 }
 
 @media (max-width: 1300px) {
