@@ -1,4 +1,5 @@
 let mergeSortSteps = [];
+let quickSortSteps = [];
 
 function bubbleSort(arr) {
     let steps = [];
@@ -333,4 +334,55 @@ function bogoSort(arr) {
     return steps;
 }
 
-export { bubbleSort, selectionSort, insertionSort, runMergeSort, heapSort, bogoSort };
+function partition(arr, indexArr, low, high) {
+    let pivot = arr[high];
+    let i = low - 1;
+   
+    for (let j = low; j <= high - 1; j++) {
+        quickSortSteps.push({
+            arrayState: [...indexArr],
+            pivotIndex: high,
+            idx1: i,
+            idx2: j
+        });
+        
+        if (arr[j] < pivot) {
+            i++;
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+            [indexArr[i], indexArr[j]] = [indexArr[j], indexArr[i]];
+        }
+    }
+
+    quickSortSteps.push({
+        arrayState: [...indexArr],
+        pivotIndex: high,
+        idx1: i+1,
+        idx2: high
+    });
+
+    [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
+    [indexArr[i+1], indexArr[high]] = [indexArr[high], indexArr[i+1]];
+
+    return i + 1;
+}
+
+function quickSort(arr, low, high, indexArr) {
+    if (low < high) {
+        let pi = partition(arr, indexArr, low, high);
+
+        quickSort(arr, low, pi - 1, indexArr);
+        quickSort(arr, pi + 1, high, indexArr);
+    }
+}
+
+function runQuickSort(arr) {
+    let indexArr = Array.from({length: arr.length}, (_, i) => i);
+    quickSortSteps = [];
+    quickSortSteps.push({
+        originalArr: [...arr]
+    });
+    quickSort(arr, 0, arr.length - 1, indexArr);
+    return quickSortSteps;
+}
+
+export { bubbleSort, selectionSort, insertionSort, runMergeSort, heapSort, runQuickSort, bogoSort };

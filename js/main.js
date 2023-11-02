@@ -1,4 +1,4 @@
-import { bubbleSort, selectionSort, insertionSort, runMergeSort, heapSort, bogoSort } from './sortingAlgorithms.js';
+import { bubbleSort, selectionSort, insertionSort, runMergeSort, heapSort, runQuickSort, bogoSort } from './sortingAlgorithms.js';
 import { createArray, updateVisualArray } from './visualizer.js';
 
 let arr = [];
@@ -79,7 +79,7 @@ document.getElementById('sort-button').addEventListener('click', function() {
             sortingSteps = heapSort(arr);
             break;
         case 'quick-sort':
-            sortingSteps = quickSort(arr);
+            sortingSteps = runQuickSort(arr);
             break;
         case 'bogo-sort':
             sortingSteps = bogoSort(arr);

@@ -38,6 +38,9 @@ function updateVisualArray(sort, steps, speed) {
         case 'heap-sort':
             updateHeapSort(steps, speed);
             break;
+        case 'quick-sort':
+            updateQuickSort(steps, speed);
+            break;
         case 'bogo-sort':
             updateBogoSort(steps, speed);
             break;
@@ -205,6 +208,41 @@ function updateBogoSort(steps, speed) {
     });
 }
 
+function updateQuickSort(steps, speed) {
+    const bars = document.querySelectorAll('.bar');
+    const arr = steps[0].originalArr;
+    const n = arr.length;
+    
+    steps.forEach((step, index) => {
+        for (let i = 0; i < n; i++) {
+            setTimeout(() => {
+                bars.forEach(bar => bar.classList.remove('i-highlight'));
+                bars.forEach(bar => bar.classList.remove('j-highlight'));
+                bars.forEach(bar => bar.classList.remove('p-highlight'));
 
+                bars[step.pivotIndex].classList.add('p-highlight');
+
+                if (step.idx1 != null) {
+                    bars[step.idx1].classList.add('i-highlight');
+                }
+    
+                if (step.idx2 != null && step.idx2 >= 0 && step.idx2 < bars.length) {
+                    bars[step.idx2].classList.add('j-highlight');
+                }
+    
+                let idx = step.arrayState[i];
+    
+                bars[i].style.height = `${arr[idx]}%`;
+
+            }, index * speed)
+        }
+    });
+
+    setTimeout(() => {
+        bars.forEach(bar => bar.classList.remove('i-highlight'));
+        bars.forEach(bar => bar.classList.remove('j-highlight'));
+        bars.forEach(bar => bar.classList.remove('p-highlight'));
+    }, (steps.length + 1) * speed);
+}
 
 export { createArray, createVisualArray, updateVisualArray };

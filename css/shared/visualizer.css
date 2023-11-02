@@ -22,9 +22,13 @@
 }
 
 .i-highlight {
-    background-color: #1ea841;
+    background-color: #8BE9FD;
 }
 
 .j-highlight {
-    background-color: #31c4c9;
+    background-color: #FFB86C;
+}
+
+.p-highlight {
+    background-color: #FF5555;
 }
