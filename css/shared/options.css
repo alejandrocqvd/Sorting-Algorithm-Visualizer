@@ -138,3 +138,19 @@ h3 {
     text-overflow: ellipsis; 
     width: 100%; */
 }
+
+@media (max-width: 1300px) {
+    .slider {
+        height: 10px;
+    }
+    
+    .slider::-webkit-slider-thumb {
+        width: 15px;
+        height: 15px;
+    }
+      
+    .slider::-moz-range-thumb {
+        width: 15px;
+        height: 15px;
+    }
+  }
