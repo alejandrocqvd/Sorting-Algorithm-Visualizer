@@ -382,6 +382,9 @@ function runQuickSort(arr) {
         originalArr: [...arr]
     });
     quickSort(arr, 0, arr.length - 1, indexArr);
+    quickSortSteps.push({
+        arrayState: [...indexArr],
+    });
     return quickSortSteps;
 }
 
