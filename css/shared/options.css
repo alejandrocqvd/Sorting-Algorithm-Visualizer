@@ -135,6 +135,22 @@ h3 {
     margin-top: 0;
 }
 
+@media (max-width: 1900px) {
+    .slider {
+        height: 10px;
+    }
+    
+    .slider::-webkit-slider-thumb {
+        width: 15px;
+        height: 15px;
+    }
+      
+    .slider::-moz-range-thumb {
+        width: 15px;
+        height: 15px;
+    }
+}
+
 @media (max-width: 1300px) {
     .slider {
         height: 10px;
@@ -149,4 +165,5 @@ h3 {
         width: 15px;
         height: 15px;
     }
-  }
+}
+

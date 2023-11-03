@@ -29,8 +29,14 @@ h3 {
     font-weight: 600;
 }
 
+@media (max-width: 1900px) {
+    html {
+      font-size: 12px;
+    }
+}
+
 @media (max-width: 1300px) {
     html {
       font-size: 8px;
     }
-  }
+}

@@ -33,9 +33,17 @@
     background-color: #FF5555;
 }
 
+@media (max-width: 1900px) {
+    .visualizer-container {
+        max-width: 700px;
+        height: 300px;
+    }
+}
+
 @media (max-width: 1300px) {
     .visualizer-container {
         max-width: 450px;
         height: 200px;
     }
-  }
+}
+
