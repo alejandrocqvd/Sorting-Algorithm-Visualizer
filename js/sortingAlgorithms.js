@@ -1,6 +1,19 @@
+/**
+ * Sorting Algorithms for Visualization
+ *
+ * This module contains implementations of various sorting algorithms.
+ * Each function is designed to track and return the steps involved in the sorting process,
+ * allowing for visualization of these algorithms in action.
+ */
+
 let mergeSortSteps = [];
 let quickSortSteps = [];
 
+/**
+ * Implements the Bubble Sort algorithm and tracks its steps.
+ * @param {number[]} arr - The array to be sorted.
+ * @returns {Object[]} An array of steps showing how the array is sorted.
+ */
 function bubbleSort(arr) {
     let steps = [];
     let n = arr.length;
@@ -38,6 +51,11 @@ function bubbleSort(arr) {
     return steps;
 }
 
+/**
+ * Implements the Selection Sort algorithm and tracks its steps.
+ * @param {number[]} arr - The array to be sorted.
+ * @returns {Object[]} An array of steps showing how the array is sorted.
+ */
 function selectionSort(arr) {
     let steps = [];
     let n = arr.length;
@@ -71,6 +89,11 @@ function selectionSort(arr) {
     return steps;
 }
 
+/**
+ * Implements the Insertion Sort algorithm and tracks its steps.
+ * @param {number[]} arr - The array to be sorted.
+ * @returns {Object[]} An array of steps showing how the array is sorted.
+ */
 function insertionSort(arr) {
     let steps = [];
     let n = arr.length;
@@ -116,6 +139,14 @@ function insertionSort(arr) {
     return steps;
 }
 
+/**
+ * Helper function for Merge Sort to merge two sub-arrays.
+ * @param {number[]} arr - The array containing the sub-arrays to be merged.
+ * @param {number[]} indexArr - The array of indices for tracking visualizations.
+ * @param {number} l - The starting index of the first subarray.
+ * @param {number} m - The ending index of the first subarray and one less than the starting index of the second subarray.
+ * @param {number} r - The ending index of the second subarray.
+ */
 function merge(arr, indexArr, l, m, r) {
     let n1 = m - l + 1;
     let n2 = r - m;
@@ -206,7 +237,13 @@ function merge(arr, indexArr, l, m, r) {
     }
 }
 
-
+/**
+ * Recursively sorts an array using the Merge Sort algorithm and tracks its steps.
+ * @param {number[]} arr - The array to be sorted.
+ * @param {number} l - The starting index of the array segment to be sorted.
+ * @param {number} r - The ending index of the array segment to be sorted.
+ * @param {number[]} indexArr - The array of indices for tracking visualizations.
+ */
 function mergeSort(arr, l, r, indexArr) {
     if (l >= r) return;
 
@@ -217,6 +254,11 @@ function mergeSort(arr, l, r, indexArr) {
     merge(arr, indexArr, l, m, r);
 }
 
+/**
+ * Initiates the Merge Sort process and tracks its steps.
+ * @param {number[]} arr - The array to be sorted.
+ * @returns {Object[]} An array of steps showing how the array is sorted.
+ */
 function runMergeSort(arr) {
     let indexArr = Array.from({length: arr.length}, (_, i) => i);
     mergeSortSteps = [];
@@ -227,6 +269,11 @@ function runMergeSort(arr) {
     return mergeSortSteps;
 }
 
+/**
+ * Implements the Heap Sort algorithm and tracks its steps.
+ * @param {number[]} arr - The array to be sorted.
+ * @returns {Object[]} An array of steps showing how the array is sorted.
+ */
 function heapSort(arr) {
     let steps = [];
     let indexArr = Array.from({length: arr.length}, (_, i) => i);
@@ -253,6 +300,14 @@ function heapSort(arr) {
     return steps;
 }
 
+/**
+ * Forms a heap from a portion of an array.
+ * @param {number[]} arr - The array containing the heap.
+ * @param {number[]} indexArr - The array of indices for tracking visualizations.
+ * @param {number} n - The number of elements in the heap.
+ * @param {number} i - The index of the current root element.
+ * @param {Object[]} steps - The array of steps showing the sorting process.
+ */
 function heapify(arr, indexArr, n, i, steps) {
     let largest = i;
     let l = 2 * i + 1;
@@ -270,6 +325,14 @@ function heapify(arr, indexArr, n, i, steps) {
     }
 }
 
+/**
+ * Swaps two elements in an array and tracks the swap.
+ * @param {number[]} arr - The array where the swap will occur.
+ * @param {number[]} indexArr - The array of indices for tracking visualizations.
+ * @param {number} i - The index of the first element to swap.
+ * @param {number} j - The index of the second element to swap.
+ * @param {Object[]} steps - The array of steps showing the sorting process.
+ */
 function swap(arr, indexArr, i, j, steps) {
     steps.push({
         arrayState: [...indexArr],
@@ -292,6 +355,12 @@ function swap(arr, indexArr, i, j, steps) {
     });
 }
 
+/**
+ * Checks if an array is sorted.
+ * @param {number[]} arr - The array to check.
+ * @param {number} n - The number of elements in the array.
+ * @returns {boolean} True if the array is sorted, false otherwise.
+ */
 function isSorted(arr, n) {
     for(let i = 1; i < n; i++) 
         if (arr[i] < arr[i-1])
@@ -299,12 +368,24 @@ function isSorted(arr, n) {
     return true;
 }
 
+/**
+ * Swaps two elements in an array.
+ * @param {number[]} arr - The array where the swap will occur.
+ * @param {number} xp - The index of the first element to swap.
+ * @param {number} yp - The index of the second element to swap.
+ */
 function bogoSwap(arr, xp, yp) {
     let temp = arr[xp];
     arr[xp] = arr[yp];
     arr[yp] = temp;
 }
 
+/**
+ * Randomly shuffles an array.
+ * @param {number[]} arr - The array to shuffle.
+ * @param {number} n - The number of elements in the array.
+ * @returns {number[]} The shuffled array.
+ */
 function shuffle(arr, n) {
     let i, j = n;
     for (i = 0; i < n; i++){
@@ -314,6 +395,11 @@ function shuffle(arr, n) {
     return arr; 
 }
 
+/**
+ * Implements the Bogo Sort algorithm and tracks its steps.
+ * @param {number[]} arr - The array to be sorted.
+ * @returns {Object[]} An array of steps showing how the array is sorted.
+ */
 function bogoSort(arr) {
     let steps = [];
     let n = arr.length;
@@ -334,6 +420,14 @@ function bogoSort(arr) {
     return steps;
 }
 
+/**
+ * Partitions an array for the Quick Sort algorithm.
+ * @param {number[]} arr - The array to be partitioned.
+ * @param {number[]} indexArr - The array of indices for tracking visualizations.
+ * @param {number} low - The starting index of the segment to be partitioned.
+ * @param {number} high - The ending index of the segment to be partitioned.
+ * @returns {number} The partition index.
+ */
 function partition(arr, indexArr, low, high) {
     let pivot = arr[high];
     let i = low - 1;
@@ -366,6 +460,13 @@ function partition(arr, indexArr, low, high) {
     return i + 1;
 }
 
+/**
+ * Recursively sorts an array using the Quick Sort algorithm and tracks its steps.
+ * @param {number[]} arr - The array to be sorted.
+ * @param {number} low - The starting index of the array segment to be sorted.
+ * @param {number} high - The ending index of the array segment to be sorted.
+ * @param {number[]} indexArr - The array of indices for tracking visualizations.
+ */
 function quickSort(arr, low, high, indexArr) {
     if (low < high) {
         let pi = partition(arr, indexArr, low, high);
@@ -375,6 +476,11 @@ function quickSort(arr, low, high, indexArr) {
     }
 }
 
+/**
+ * Initiates the Quick Sort process and tracks its steps.
+ * @param {number[]} arr - The array to be sorted.
+ * @returns {Object[]} An array of steps showing how the array is sorted.
+ */
 function runQuickSort(arr) {
     let indexArr = Array.from({length: arr.length}, (_, i) => i);
     quickSortSteps = [];

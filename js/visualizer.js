@@ -1,3 +1,15 @@
+/**
+ * Sorting Algorithm Visualization Helper Functions
+ *
+ * This module contains helper functions for creating and updating the visual representation of sorting algorithms.
+ * It includes functions to create a random array, visualize it, and update the visualization based on the sorting steps.
+ */
+
+/**
+ * Creates an array of a specified size with random values.
+ * @param {number} size - The size of the array to be created.
+ * @returns {number[]} An array of random numbers.
+ */
 function createArray(size) {
     const min = 10;
     const max = 90;
@@ -12,6 +24,10 @@ function createArray(size) {
     return arr;
 }
 
+/**
+ * Creates a visual representation of an array in the DOM.
+ * @param {number[]} arr - The array to be visualized.
+ */
 function createVisualArray(arr) {
     const container = document.getElementById('visualizer-container');
     arr.forEach(value => {
@@ -21,6 +37,12 @@ function createVisualArray(arr) {
     })
 }
 
+/**
+ * Updates the visual representation of the array based on the sorting algorithm and its steps.
+ * @param {string} sort - The name of the sorting algorithm being visualized.
+ * @param {Object[]} steps - The steps of the sorting process.
+ * @param {number} speed - The speed at which the visualization updates.
+ */
 function updateVisualArray(sort, steps, speed) {
     switch (sort) {
         case 'bubble-sort':
@@ -47,6 +69,11 @@ function updateVisualArray(sort, steps, speed) {
     }
 }
 
+/**
+ * Updates the visual representation for Bubble Sort.
+ * @param {Object[]} steps - The steps of the Bubble Sort process.
+ * @param {number} speed - The speed at which the visualization updates.
+ */
 function updateBubbleSort(steps, speed) {
     const bars = document.querySelectorAll('.bar');
     
@@ -72,6 +99,11 @@ function updateBubbleSort(steps, speed) {
     });
 }
 
+/**
+ * Updates the visual representation for Selection Sort.
+ * @param {Object[]} steps - The steps of the Selection Sort process.
+ * @param {number} speed - The speed at which the visualization updates.
+ */
 function updateSelectionSort(steps, speed) {
     const bars = document.querySelectorAll('.bar');
     
@@ -102,6 +134,11 @@ function updateSelectionSort(steps, speed) {
     }, (steps.length + 1) * speed);
 }
 
+/**
+ * Updates the visual representation for Insertion Sort.
+ * @param {Object[]} steps - The steps of the Insertion Sort process.
+ * @param {number} speed - The speed at which the visualization updates.
+ */
 function updateInsertionSort(steps, speed) {
     const bars = document.querySelectorAll('.bar');
 
@@ -132,6 +169,11 @@ function updateInsertionSort(steps, speed) {
     }, (steps.length + 1) * speed);
 }
 
+/**
+ * Updates the visual representation for Merge Sort.
+ * @param {Object[]} steps - The steps of the Merge Sort process.
+ * @param {number} speed - The speed at which the visualization updates.
+ */
 function updateMergeSort(steps, speed) {
     const bars = document.querySelectorAll('.bar');
     const arr = steps[0].originalArr;
@@ -163,6 +205,11 @@ function updateMergeSort(steps, speed) {
     }, (steps.length + 1) * speed);
 }
 
+/**
+ * Updates the visual representation for Heap Sort.
+ * @param {Object[]} steps - The steps of the Heap Sort process.
+ * @param {number} speed - The speed at which the visualization updates.
+ */
 function updateHeapSort(steps, speed) {
     const bars = document.querySelectorAll('.bar');
     const arr = steps[0].originalArr;
@@ -194,6 +241,11 @@ function updateHeapSort(steps, speed) {
     }, (steps.length + 1) * speed);
 }
 
+/**
+ * Updates the visual representation for Bogo Sort.
+ * @param {Object[]} steps - The steps of the Bogo Sort process.
+ * @param {number} speed - The speed at which the visualization updates.
+ */
 function updateBogoSort(steps, speed) {
     const bars = document.querySelectorAll('.bar');
     const arr = steps[0].originalArr;
@@ -208,6 +260,11 @@ function updateBogoSort(steps, speed) {
     });
 }
 
+/**
+ * Updates the visual representation for Quick Sort.
+ * @param {Object[]} steps - The steps of the Quick Sort process.
+ * @param {number} speed - The speed at which the visualization updates.
+ */
 function updateQuickSort(steps, speed) {
     const bars = document.querySelectorAll('.bar');
     const arr = steps[0].originalArr;

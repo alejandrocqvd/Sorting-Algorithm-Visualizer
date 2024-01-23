@@ -1,3 +1,13 @@
+/**
+ * Sorting Algorithm Visualizer
+ * 
+ * This JavaScript file provides functionality for a sorting algorithm visualizer.
+ * It allows users to select different sorting algorithms, adjust the size of the array to be sorted,
+ * and visually observe the sorting process. Supported algorithms include Bubble Sort, Selection Sort,
+ * Insertion Sort, Merge Sort, Heap Sort, Quick Sort, and Bogo Sort. 
+ * The visualization updates dynamically based on the chosen algorithm and array size.
+ */
+
 import { bubbleSort, selectionSort, insertionSort, runMergeSort, heapSort, runQuickSort, bogoSort } from './sortingAlgorithms.js';
 import { createArray, updateVisualArray } from './visualizer.js';
 
@@ -5,6 +15,11 @@ let arr = [];
 let totalTime = 25000;
 let chosenAlgorithm = 'bubble-sort';
 
+/**
+ * Event listener for primary buttons.
+ * Adds click event listeners to all primary buttons. On click, it updates the 
+ * chosen algorithm and visually indicates the active algorithm.
+ */
 document.querySelectorAll('.primary-button').forEach(button => {
     button.addEventListener('click', function() {
         document.querySelectorAll('.primary-button').forEach(btn => {
@@ -15,6 +30,11 @@ document.querySelectorAll('.primary-button').forEach(button => {
     });
 });
 
+/**
+ * DOMContentLoaded event listener.
+ * Initializes the visualizer once the DOM content is loaded.
+ * Sets up the array size slider and initial array display.
+ */
 document.addEventListener('DOMContentLoaded', (event) => {
     const arraySlider = document.getElementById('array-slider');
     const visualizerContainer = document.getElementById('visualizer-container');
@@ -62,6 +82,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 });
 
+/**
+ * Click event listener for the 'sort-button'.
+ * Initiates the sorting process based on the chosen algorithm.
+ * Disables the sort button during sorting and re-enables it upon completion.
+ */
 document.getElementById('sort-button').addEventListener('click', function() {
     const sortButton = document.getElementById('sort-button');
     sortButton.disabled = true;
